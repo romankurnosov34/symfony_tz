@@ -1,0 +1,45 @@
+app_form:
+    path: /
+    controller: App\Controller\FormController::index
+    methods: [GET, POST]
+
+app_form_success:
+    path: /success
+    controller: App\Controller\FormController::success
+    methods: [GET]
+
+app_login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+    methods: [GET, POST]
+
+app_logout:
+    path: /logout
+    methods: [GET]
+
+app_admin_dashboard:
+    path: /admin
+    controller: App\Controller\AdminController::dashboard
+    methods: [GET]
+
+app_admin_submissions:
+    path: /admin/submissions
+    controller: App\Controller\AdminController::submissions
+    methods: [GET]
+
+app_admin_submission_view:
+    path: /admin/submission/{id}
+    controller: App\Controller\AdminController::viewSubmission
+    methods: [GET]
+    requirements:
+        id: '\d+'
+
+app_admin_users:
+    path: /admin/users
+    controller: App\Controller\AdminController::users
+    methods: [GET]
+
+app_admin_user_new:
+    path: /admin/users/new
+    controller: App\Controller\AdminController::newUser
+    methods: [GET, POST]

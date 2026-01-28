@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Пользователи{% endblock %}
+{% block header_title %}Пользователи{% endblock %}
+
+{% block body %}
+    <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h2>Список пользователей</h2>
+            <a href="{{ path('app_admin_user_new') }}" class="btn btn-primary">Добавить пользователя</a>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Имя</th>
+                    <th>Роли</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in pagination %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.roles|join(', ') }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4" style="text-align: center;">Нет пользователей</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <div style="margin-top: 20px;">
+            <a href="{{ path('app_admin_dashboard') }}" class="btn">← Назад</a>
+        </div>
+    </div>
+{% endblock %}

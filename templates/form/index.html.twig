@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="card">
+        <h2 style="margin-bottom: 20px;">Форма для заполнения</h2>
+        
+        {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+        
+        <div class="form-group">
+            {{ form_label(form.text) }}
+            {{ form_widget(form.text, {'attr': {'class': 'form-control'}}) }}
+            <div class="error">{{ form_errors(form.text) }}</div>
+        </div>
+        
+        <div class="form-group">
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+            <div class="error">{{ form_errors(form.email) }}</div>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="form-group">
+                {{ form_label(form.color) }}
+                {{ form_widget(form.color, {'attr': {'class': 'form-select'}}) }}
+                <div class="error">{{ form_errors(form.color) }}</div>
+            </div>
+            
+            <div class="form-group">
+                {{ form_label(form.shape) }}
+                {{ form_widget(form.shape, {'attr': {'class': 'form-select'}}) }}
+                <div class="error">{{ form_errors(form.shape) }}</div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            {{ form_label(form.images) }}
+            {{ form_widget(form.images, {'attr': {'class': 'form-control'}}) }}
+            <div class="error">{{ form_errors(form.images) }}</div>
+            <div class="help-text">Можно загрузить до 4 изображений в формате JPG или PNG.</div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px;">Отправить</button>
+        
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

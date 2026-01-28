@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="card">
+        <script>
+            alert('Запись успешно сохранена!');
+            setTimeout(function() {
+                window.location.href = "{{ path('app_form') }}";
+            }, 100);
+        </script>
+        
+        <p>Перенаправление на форму...</p>
+    </div>
+{% endblock %}

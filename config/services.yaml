@@ -1,0 +1,19 @@
+parameters:
+    images_directory: '%kernel.project_dir%/public/images'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    App\Form\FormSubmissionType:
+        arguments: 
+            $colorRepository: '@App\Repository\ColorRepository'
+            $shapeRepository: '@App\Repository\ShapeRepository'
+        tags: ['form.type']

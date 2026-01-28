@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Просмотр заявки #{{ submission.id }}{% endblock %}
+{% block header_title %}Просмотр заявки #{{ submission.id }}{% endblock %}
+
+{% block body %}
+    <div class="card">
+        <h2 style="margin-bottom: 20px;">Заявка #{{ submission.id }}</h2>
+        
+        <div style="margin-bottom: 20px;">
+            <table style="width: auto;">
+                <tr>
+                    <th style="padding-right: 20px;">ID:</th>
+                    <td>{{ submission.id }}</td>
+                </tr>
+                <tr>
+                    <th>Email:</th>
+                    <td>{{ submission.email }}</td>
+                </tr>
+                <tr>
+                    <th>Цвет:</th>
+                    <td>{{ submission.getColorName() }}</td>
+                </tr>
+                <tr>
+                    <th>Фигура:</th>
+                    <td>{{ submission.getShapeName() }}</td>
+                </tr>
+                <tr>
+                    <th>Дата создания:</th>
+                    <td>{{ submission.createdAt|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <th>Кол-во изображений:</th>
+                    <td>{{ submission.getImagesCount() }}</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <h3>Текст сообщения:</h3>
+            <div style="border: 1px solid #ddd; padding: 15px; border-radius: 4px; background: #f9f9f9;">
+                {{ submission.text|nl2br }}
+            </div>
+        </div>
+        
+        {% if submission.getImagesCount() > 0 %}
+        <div style="margin-bottom: 20px;">
+            <h3>Изображения:</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+                {% for image in submission.images %}
+                <div>
+                    <a href="{{ asset('images/' ~ image) }}" target="_blank">
+                        <img src="{{ asset('images/' ~ image) }}" alt="Изображение {{ loop.index }}" style="max-width: 150px; max-height: 150px; border: 1px solid #ddd;">
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        
+        <div style="margin-top: 20px;">
+            <a href="{{ path('app_admin_submissions') }}" class="btn">← Назад к списку</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Заявки пользователей{% endblock %}
+{% block header_title %}Заявки пользователей{% endblock %}
+
+{% block body %}
+    <div class="card">
+        <h2 style="margin-bottom: 20px;">Список заявок</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Цвет</th>
+                    <th>Фигура</th>
+                    <th>Дата</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for submission in pagination %}
+                <tr>
+                    <td>{{ submission.id }}</td>
+                    <td>{{ submission.email }}</td>
+                    <td>{{ submission.getColorName() }}</td>
+                    <td>{{ submission.getShapeName() }}</td>
+                    <td>{{ submission.createdAt|date('Y-m-d H:i') }}</td>
+                    <td class="actions">
+                        <a href="{{ path('app_admin_submission_view', {id: submission.id}) }}" class="btn btn-primary">Просмотр</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="6" style="text-align: center;">Нет заявок</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <div style="margin-top: 20px;">
+            <a href="{{ path('app_admin_dashboard') }}" class="btn">← Назад</a>
+        </div>
+    </div>
+{% endblock %}

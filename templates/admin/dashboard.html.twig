@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Панель администратора{% endblock %}
+{% block header_title %}Панель администратора{% endblock %}
+
+{% block body %}
+    <div class="card">
+        <h2 style="margin-bottom: 30px;">Статистика</h2>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; text-align: center;">
+                <h3 style="margin-bottom: 10px;">Всего заявок</h3>
+                <p style="font-size: 2rem; color: #007bff;">{{ total_submissions }}</p>
+            </div>
+            
+            <div style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; text-align: center;">
+                <h3 style="margin-bottom: 10px;">Всего пользователей</h3>
+                <p style="font-size: 2rem; color: #007bff;">{{ total_users }}</p>
+            </div>
+        </div>
+        
+        <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 10px;">
+            <a href="{{ path('app_admin_submissions') }}" class="btn btn-primary">Просмотр заявок</a>
+            <a href="{{ path('app_admin_users') }}" class="btn">Управление пользователями</a>
+            <a href="{{ path('app_form') }}" class="btn">На сайт</a>
+        </div>
+    </div>
+{% endblock %}
